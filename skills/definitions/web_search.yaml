@@ -1,0 +1,18 @@
+id: web_search
+name: 网络搜索
+description: 搜索网络信息
+version: "1.0.0"
+category: builtin
+triggers:
+  keywords:
+    - 搜索
+    - search
+    - web
+  intent_types:
+    - web_search
+parameters:
+  - name: query
+    type: string
+    required: true
+    description: 搜索关键词
+permissions: []

@@ -1,0 +1,22 @@
+id: data_analysis
+name: 数据分析
+description: 分析数据文件并回答问题
+version: "1.0.0"
+category: builtin
+triggers:
+  keywords:
+    - 分析数据
+    - 数据分析
+    - analyze data
+  intent_types:
+    - data_analysis
+parameters:
+  - name: file_path
+    type: string
+    required: true
+    description: 数据文件路径
+  - name: question
+    type: string
+    required: false
+    description: 关于数据的问题
+permissions: []

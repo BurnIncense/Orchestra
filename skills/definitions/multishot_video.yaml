@@ -1,0 +1,18 @@
+id: multishot_video
+name: 多镜头视频
+description: 生成多镜头叙事视频
+version: "1.0.0"
+category: builtin
+triggers:
+  keywords:
+    - 多镜头
+    - 故事视频
+    - story video
+  intent_types:
+    - multishot_video
+parameters:
+  - name: shots
+    type: list
+    required: true
+    description: 镜头列表
+permissions: []

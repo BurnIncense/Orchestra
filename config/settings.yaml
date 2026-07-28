@@ -1,0 +1,120 @@
+system:
+  name: "Orchestra"
+  version: "2.2.0"
+  instance_id: "${ORCHESTRA_INSTANCE:-default}"
+  log_level: "INFO"
+  log_dir: "./data/logs"
+  trace_dir: "./data/traces"
+
+hardware:
+  gpu_memory_gb: 8
+  ram_gb: 16
+  strategy: "hot_swap"
+
+ports:
+  thinker: "${ORCHESTRA_PORT_THINKER:-8081}"
+  memory: "${ORCHESTRA_PORT_MEMORY:-8082}"
+  mcp_server: "${ORCHESTRA_PORT_MCP:-9100}"
+  web_ui: "${ORCHESTRA_PORT_WEB:-7860}"
+  api: "${ORCHESTRA_PORT_API:-8000}"
+
+models:
+  thinker:
+    name: "Qwen2.5-0.5B"
+    path: "./data/models/qwen2.5-0.5b/models/Qwen--Qwen2.5-0.5B-Instruct-GGUF/snapshots/master/qwen2.5-0.5b-instruct-q4_k_m.gguf"
+    backend: "llama_cpp"
+    n_ctx: 4096
+    n_gpu_layers: 0
+    resident: true
+
+  memory:
+    name: "Qwen2.5-0.5B"
+    path: "./data/models/qwen2.5-0.5b/models/Qwen--Qwen2.5-0.5B-Instruct-GGUF/snapshots/master/qwen2.5-0.5b-instruct-q4_k_m.gguf"
+    backend: "llama_cpp"
+    n_ctx: 4096
+    n_gpu_layers: 0
+    resident: true
+
+  vision:
+    name: "Janus-Pro-1B"
+    path: "./data/models/janus-pro-1b"
+    backend: "transformers"
+    dtype: "bfloat16"
+    resident: false
+    gpu_memory_gb: 4.0
+
+  video:
+    name: "MultiShotMaster"
+    path: "./data/models/wan2.1-1.3b"
+    backend: "diffusers"
+    dtype: "float16"
+    resident: false
+    gpu_memory_gb: 6.0
+    text_encoder_device: "cpu"
+
+skills:
+  builtin_dir: "./skills/builtin"
+  extension_dir: "./skills/extension"
+  definitions_dir: "./skills/definitions"
+  auto_load_extensions: true
+  sandbox:
+    max_memory_mb: 2048
+    max_cpu_seconds: 300
+    max_file_size_mb: 100
+    allow_network: false
+    allow_subprocess: false
+  learning:
+    enabled: true
+    min_records: 5
+    learn_interval: 20
+
+mcp:
+  client:
+    enabled: true
+    config_path: "./mcp/config/servers.yaml"
+    auto_connect: true
+    bridge_to_skills: true
+    timeout: 30
+    retry: 3
+    max_connections: 10
+    per_server_max_concurrent: 3
+    health_check_interval: 60
+
+  server:
+    enabled: true
+    transport: "sse"
+    port: "${ORCHESTRA_PORT_MCP:-9100}"
+    tls:
+      enabled: true
+      cert_dir: "./data/certs"
+    auth:
+      enabled: true
+      api_keys:
+        - key: "${ORCHESTRA_API_KEY_1:-orc_default_key}"
+          name: "Default Client"
+          permissions: ["*"]
+          rate_limit: 60
+    resource_acl:
+      "orchestra://users/*": "owner_only"
+      "orchestra://shared/*": "authenticated"
+
+session:
+  max_sessions: 50
+  max_idle_seconds: 3600
+  max_turns: 100
+  persist: true
+  cleanup_interval: 60
+
+saga:
+  persistence_dir: "./data/saga"
+  auto_recover: true
+
+memory:
+  max_working_turns: 10
+  compress_threshold: 10
+  auto_save_interval: 5
+
+output:
+  base_dir: "./data/outputs"
+  max_images_per_user: 200
+  max_videos_per_user: 50

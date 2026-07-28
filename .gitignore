@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+*.egg
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Data & Models (large files and runtime data)
+data/models/
+data/outputs/
+data/logs/
+data/traces/
+data/saga/
+data/certs/
+data/memory/
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+.tox/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# MCP
+*.log
+
+# Trae
+.trae/

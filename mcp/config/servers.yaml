@@ -1,0 +1,26 @@
+mcp_servers:
+  filesystem:
+    command: "npx"
+    args: ["-y", "@modelcontextprotocol/server-filesystem", "${HOME}/documents"]
+    transport: "stdio"
+    enabled: true
+
+  browser:
+    command: "npx"
+    args: ["-y", "@anthropic/mcp-server-puppeteer"]
+    transport: "stdio"
+    enabled: true
+
+  sqlite:
+    command: "npx"
+    args: ["-y", "@modelcontextprotocol/server-sqlite", "./data/orchestra.db"]
+    transport: "stdio"
+    enabled: true
+
+  github:
+    command: "npx"
+    args: ["-y", "@modelcontextprotocol/server-github"]
+    transport: "stdio"
+    enabled: false
+    env:
+      GITHUB_TOKEN: "${GITHUB_TOKEN}"

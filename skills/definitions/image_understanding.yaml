@@ -1,0 +1,22 @@
+id: image_understanding
+name: 图片理解
+description: 分析和理解图片内容
+version: "1.0.0"
+category: builtin
+triggers:
+  keywords:
+    - 看图
+    - 理解图片
+    - analyze image
+  intent_types:
+    - image_understanding
+parameters:
+  - name: image_path
+    type: string
+    required: true
+    description: 图片文件路径
+  - name: question
+    type: string
+    required: true
+    description: 关于图片的问题
+permissions: []

@@ -1,0 +1,26 @@
+id: image_generation
+name: 图片生成
+description: 根据文本提示生成图片
+version: "1.0.0"
+category: builtin
+triggers:
+  keywords:
+    - 画
+    - 生成图片
+    - image
+  intent_types:
+    - image_generation
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    description: 图片生成的文本提示
+  - name: style
+    type: string
+    required: false
+    description: 图片风格
+  - name: size
+    type: string
+    required: false
+    description: 图片尺寸
+permissions: []

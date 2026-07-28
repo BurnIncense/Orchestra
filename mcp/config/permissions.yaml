@@ -1,0 +1,22 @@
+permissions:
+  default_policy: "ask"
+
+  servers:
+    filesystem:
+      read: "allow"
+      write: "ask"
+      delete: "deny"
+    browser:
+      navigate: "allow"
+      screenshot: "allow"
+      form_submit: "ask"
+    github:
+      read_repo: "allow"
+      create_issue: "ask"
+      push_code: "deny"
+
+  tools:
+    execute_code:
+      policy: "ask"
+      sandbox: true
+      timeout: 30

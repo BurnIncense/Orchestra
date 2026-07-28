@@ -1,0 +1,22 @@
+id: file_operations
+name: 文件操作
+description: 读取和写入文件
+version: "1.0.0"
+category: builtin
+triggers:
+  keywords:
+    - 文件
+    - 读文件
+    - 写文件
+  intent_types:
+    - file_operations
+parameters:
+  - name: operation
+    type: string
+    required: true
+    description: 操作类型（read/write）
+  - name: path
+    type: string
+    required: true
+    description: 文件路径
+permissions: []

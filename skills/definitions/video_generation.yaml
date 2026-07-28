@@ -1,0 +1,22 @@
+id: video_generation
+name: 视频生成
+description: 根据文本提示生成视频
+version: "1.0.0"
+category: builtin
+triggers:
+  keywords:
+    - 做视频
+    - 生成视频
+    - video
+  intent_types:
+    - video_generation
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    description: 视频生成的文本提示
+  - name: num_frames
+    type: int
+    required: false
+    description: 视频帧数
+permissions: []
